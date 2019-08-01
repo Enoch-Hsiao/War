@@ -18,11 +18,8 @@ public class Queue<T> implements UnboundedQueueInterface<T> {
 		 size = 0;
 	}
 	
-
 	@SuppressWarnings("unchecked")
 	public Queue(Queue<T> other) {
-		// TODO 2
-		// Hint: Maybe save this one until after you finish enqueue()/dequeue()
 		queue = (T[])new Object[DEFAULT_CAP];
 		rear = DEFAULT_CAP - 1;
 		front = 0;
@@ -37,8 +34,6 @@ public class Queue<T> implements UnboundedQueueInterface<T> {
 		}
 	}
 	
-	
-	@Override
 	public boolean isEmpty() {
 		// TODO 3
 		return size == 0;
@@ -48,19 +43,18 @@ public class Queue<T> implements UnboundedQueueInterface<T> {
 		return size == 52;
 	}
 
-	@Override
 	public int size() {
 		// TODO 4
 		return size;
 	}
 
-	@Override
 	public void enqueue(T element)  {
 		// TODO 5;
 		    rear = (rear + 1) % queue.length;
 		    queue[rear] = element;
 		    size++;
 	}
+	
 	public void showQueue()
 	{
 		for(int i = front; i < queue.length + front; i++)
@@ -69,7 +63,7 @@ public class Queue<T> implements UnboundedQueueInterface<T> {
 				System.out.print(queue[i % queue.length] + " ");
 		}
 	}
-	@Override
+
 	public T dequeue() throws NoSuchElementException {
 		// TODO 6;
 		 if (isEmpty()) 
@@ -80,16 +74,13 @@ public class Queue<T> implements UnboundedQueueInterface<T> {
 	    size--;
 	    return value;
 	}
-	@Override
+
 	public T peek() throws NoSuchElementException {
 		// TODO 7
 		return queue[front];
 	}
 
-	@Override
 	public UnboundedQueueInterface<T> reversed() {
-		// TODO 8
-		// Hint: Maybe save this one until after you finish enqueue()/dequeue()
 		 UnboundedQueueInterface<T> reverse = new Queue<T>();
 		 int count = 0;
 		 while(count != size)

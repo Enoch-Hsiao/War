@@ -11,6 +11,7 @@ public class Deck
 		for(int i = 0; i < myDeck.length; i++)
 			myDeck[i] = new Card(i);
 	}
+	
 	public Deck(Deck d, int start, int end)
 	{
 		myDeck = new Card[NUMCARDS];
@@ -22,14 +23,17 @@ public class Deck
 		}
 		size = end - start;
 	}
+	
 	public int getSize()
 	{
 		return size;
 	}
+	
 	public Card getCard(int i)
 	{
 		return myDeck[i];
 	}
+	
 	public String toString()
 	{
 		String builder = "";
@@ -45,6 +49,7 @@ public class Deck
 		
 		return builder;
 	}
+	
 	public String cardString(Card card)
 	{
 		char suit = card.getSuit();
@@ -52,17 +57,20 @@ public class Deck
 		
 		return value + suit;
 	}
+	
 	private void swap(Card[] ar, int i, int j)
 	{
 		Card temp = ar[i];
 		ar[i] = ar[j];
 		ar[j] = temp;
 	}
+	
 	public void shuffle()
 	{
 		for(int i = 0; i < myDeck.length; i++)
 		    swap(myDeck, i , (int)(Math.random() * myDeck.length));
 	}
+	
 	public static void main(String[] args)
 	{
 		Deck d = new Deck();

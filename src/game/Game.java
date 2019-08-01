@@ -2,40 +2,6 @@ package game;
 
 import queue.Queue;
 
-/*Sample application: The card game war
--------------------------------------
-
-The game is played by shuffling and dealing the deck to two players.
-Each player plays a card. Higher card (by value, or *rank*, suits are
-irrelevant) wins, player takes both cards.
-
-In case of tie, declare "war", dealing three face down as spoils of war.
-Then play again. Winner takes all 10 cards (or more, in case of repeated
-ties).
-
-Repeat until one player has no cards left.
-
-How could we model this in Java using queues?
-
-A Queue<Integer> for each player's deck.
-
-A Queue<Integer> for the current cards "in play", to be awarded to one
-player or the other.
-
-Start by shuffling an array of ints, containing values 1--13 each 4
-times. (Aside: Fisher-Yates shuffle.)
-
-Enqueue half for each player.
-
-Play by looping:
-
-    dequeue from each player (if empty: other player won, break loop)
-    if winner:
-      queue both to winner's deck
-      dequeue all from spoils deck, queue to winner's deck
-    else:
-      queue both to spoils queue
-      dequeue three from each, queue to spoils queue*/
 public class Game {
 	
 	private Queue<Card> spoils = new Queue<Card>();
@@ -70,25 +36,7 @@ public class Game {
 	    newGame.showDecks(player1, player2);
   	    newGame.Winner(player1, player2);
 	}
-	public void showDecks(Player player1, Player player2)
-	{
-		System.out.print("Player 1 Deck: ");
-	  	player1.showDeck();
-  	    System.out.println();
-  		System.out.print("Player 2 Deck: ");
-  	    player2.showDeck();
-  	    System.out.println();
-	}
-	public void Winner(Player player1, Player player2)
-	{
-		System.out.println();
-	    if(player1.getSize() == 0)
-	    	System.out.println("Player 2 wins War!");
-	    else if(player2.getSize() == 0)
-	    	System.out.println("Player 1 wins War!");
-	    else
-	    	System.out.println("Tie!");
-	}
+	
 	public void War(Player player1, Player player2, Card player1Value, Card player2Value)
 	{
 		System.out.println("War: " + player1Value.toString() + " " + player2Value.toString());
@@ -154,7 +102,7 @@ public class Game {
 		   		War(player1, player2, player1Value, player2Value);		
 		   	}
 	}
-
+	
 	public Card getWinner(Card player1Value, Card player2Value)
 	{
 		if(player1Value.getIntValue() > player2Value.getIntValue())
@@ -164,6 +112,28 @@ public class Game {
 		else
 			return null;
 	}
+	
+	public void showDecks(Player player1, Player player2)
+	{
+		System.out.print("Player 1 Deck: ");
+	  	player1.showDeck();
+  	    System.out.println();
+  		System.out.print("Player 2 Deck: ");
+  	    player2.showDeck();
+  	    System.out.println();
+	}
+	
+	public void Winner(Player player1, Player player2)
+	{
+		System.out.println();
+	    if(player1.getSize() == 0)
+	    	System.out.println("Player 2 wins War!");
+	    else if(player2.getSize() == 0)
+	    	System.out.println("Player 1 wins War!");
+	    else
+	    	System.out.println("Tie!");
+	}
+	 	
 	public void getSize(Player player1, Player player2)
 	{
 		System.out.println();
@@ -171,3 +141,38 @@ public class Game {
 		System.out.println("Player 2 Deck Size: " + player2.getSize());
 	}
 }
+
+/*Sample application: The card game war
+-------------------------------------
+
+The game is played by shuffling and dealing the deck to two players.
+Each player plays a card. Higher card (by value, or *rank*, suits are
+irrelevant) wins, player takes both cards.
+
+In case of tie, declare "war", dealing three face down as spoils of war.
+Then play again. Winner takes all 10 cards (or more, in case of repeated
+ties).
+
+Repeat until one player has no cards left.
+
+How could we model this in Java using queues?
+
+A Queue<Integer> for each player's deck.
+
+A Queue<Integer> for the current cards "in play", to be awarded to one
+player or the other.
+
+Start by shuffling an array of ints, containing values 1--13 each 4
+times. (Aside: Fisher-Yates shuffle.)
+
+Enqueue half for each player.
+
+Play by looping:
+
+    dequeue from each player (if empty: other player won, break loop)
+    if winner:
+      queue both to winner's deck
+      dequeue all from spoils deck, queue to winner's deck
+    else:
+      queue both to spoils queue
+      dequeue three from each, queue to spoils queue*/
